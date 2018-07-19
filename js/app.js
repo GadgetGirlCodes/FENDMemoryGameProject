@@ -1,29 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
- //CODE THAT I THINK MIGHT WORK, IF I CAN FIGURE OUT HOW TO GET THE HTMLCOLLECTION AS AN ARRAY
- //OR SOMETHING ALONG THOSE LINES
-const deckList = document.querySelector('.deck');
-const cardArray = [deckList.children];
-
-
-//CODE THAT I COULDN'T GET TO WORK
-// const cardArray = [];
-// var foo = document.querySelector('.deck');
-// for (var i = 0; i < foo.children.length; i++) {
-//     cardArray.push(foo.childNode);
-// }
-
-
-// const cardList = function addTo(cardArray) {
-// 	for (let card of cardEach) {
-// 		cardArray.push(card)
-// 	};
-// 	console.log("It worked!", 'cardArray')
-// };
-	
-
-
+const htmlCollection = document.getElementsByClassName('card')
+const cardArray = Array.from(htmlCollection)
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -32,7 +11,7 @@ const cardArray = [deckList.children];
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-const shuffleCards = function shuffle(array) {
+function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -45,9 +24,11 @@ const shuffleCards = function shuffle(array) {
 
     return array;
 }
-const reset = document.querySelector('.restart')
 
-reset.addEventListener('click',) 
+cardArray.forEach(function(item) {
+    item.setAttribute('class', 'card');
+});
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -59,3 +40,13 @@ reset.addEventListener('click',)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//FLIPS ANY CLICKED CARD
+const cardSelect = document.querySelector('.deck');
+
+const cardFlip = function (event) {
+    if (event.target.nodeName === 'LI') {
+    event.target.setAttribute('class','card open show')};
+}
+
+cardSelect.addEventListener('click', cardFlip);
