@@ -50,3 +50,17 @@ const cardFlip = function (event) {
 }
 
 cardSelect.addEventListener('click', cardFlip);
+
+//MAKING A LIST OF OPEN CARDS
+const openCards = [];
+const openCard = document.getElementsByClassName('open');
+
+const addToOpen = function () {
+    for(card of cardArray) {
+        if (card.className === 'card open show') {
+            openCards.push(card);
+        }
+    }
+}
+
+cardSelect.addEventListener('click', addToOpen);
