@@ -29,7 +29,6 @@ cardArray.forEach(function(item) {
     item.setAttribute('class', 'card');
 });
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -44,23 +43,50 @@ cardArray.forEach(function(item) {
 //FLIPS ANY CLICKED CARD
 const cardSelect = document.querySelector('.deck');
 
-const cardFlip = function (event) {
-    if (event.target.nodeName === 'LI') {
-    event.target.setAttribute('class','card open show')};
+function cardFlip(event) {
+    const clickedCard = event.target;
+    if (clickedCard.classList.contains('card')) {
+        clickedCard.classList.toggle('open');
+        clickedCard.classList.toggle('show');
+    };
 }
 
 cardSelect.addEventListener('click', cardFlip);
 
-//MAKING A LIST OF OPEN CARDS
+//MAKING A LIST OF OPEN CARDS - Cards added, but not removed
 const openCards = [];
-const openCard = document.getElementsByClassName('open');
 
-const addToOpen = function () {
-    for(card of cardArray) {
-        if (card.className === 'card open show') {
-            openCards.push(card);
-        }
+function addToOpen(event) {
+    const cardToAdd = event.target
+    if (cardToAdd.classList.contains('open')) {
+        openCards.push(cardToAdd);
     }
 }
 
 cardSelect.addEventListener('click', addToOpen);
+
+// //DO CARDS MATCH?
+// function () {
+//     if ()
+// }
+
+//MOVE COUNTER -- DEBUG(only works the first click, because it counts all the way to 21 on the first click)
+let moves = 0;
+
+function addMove() {
+    moves++;
+    const movesText = document.querySelector('.moves');
+    movesText.innerHTML = moves;
+}
+
+cardSelect.addEventListener('click', addMove)
+
+
+
+// const moveCounter = function () {
+//     for (i = 0; i <= 20; i++) {
+//         i += 1;
+//         moves.textContent = i;
+//     }
+// }
+// cardSelect.addEventListener('click', moveCounter) //Needs to be condensed into one with other event listener??
