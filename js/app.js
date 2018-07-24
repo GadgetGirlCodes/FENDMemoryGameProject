@@ -39,54 +39,54 @@ cardArray.forEach(function(item) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-//FLIPS ANY CLICKED CARD
 const cardSelect = document.querySelector('.deck');
-
-function cardFlip(event) {
-    const clickedCard = event.target;
-    if (clickedCard.classList.contains('card')) {
-        clickedCard.classList.toggle('open');
-        clickedCard.classList.toggle('show');
-    };
-}
-
-cardSelect.addEventListener('click', cardFlip);
-
-//MAKING A LIST OF OPEN CARDS - Cards added, but not removed
-const openCards = [];
-
-function addToOpen(event) {
-    const cardToAdd = event.target
-    if (cardToAdd.classList.contains('open')) {
-        openCards.push(cardToAdd);
-    }
-}
-
-cardSelect.addEventListener('click', addToOpen);
-
-// //DO CARDS MATCH?
-// function () {
-//     if ()
-// }
-
-//MOVE COUNTER -- DEBUG(only works the first click, because it counts all the way to 21 on the first click)
+let openCards = [];
 let moves = 0;
 
+//FUNCTIONS
+function toggle(eventTarget) {
+    eventTarget.classList.toggle('open');
+    eventTarget.classList.toggle('show');
+};
+
+function addToOpen(clickTarget) {
+    if (clickTarget.classList.contains('open') &&
+         openCards.length < 2) {
+         openCards.push(clickTarget);
+    };
+};
+
 function addMove() {
+    if (openCards.length === 2){
     moves++;
     const movesText = document.querySelector('.moves');
     movesText.innerHTML = moves;
-}
+    };
+};
 
-cardSelect.addEventListener('click', addMove)
+//DEBUG -- DOESN'T SHOW SECOND CLICKED CARD. NEEDS A TIMEOUT METHOD
+function itsAmatch() {
+    if (openCards[0].firstElementChild.className ===
+        openCards[1].firstElementChild.className) {
+            console.log("Its a Match!");
+            openCards[0].setAttribute('class', 'card match');
+            openCards[1].setAttribute('class', 'card match');
+            openCards = [];
+    } else {
+        console.log("Not a match!");
+        toggle(openCards[0]);
+        toggle(openCards[1]);
+        openCards = [];
+    };
+};
 
-
-
-// const moveCounter = function () {
-//     for (i = 0; i <= 20; i++) {
-//         i += 1;
-//         moves.textContent = i;
-//     }
-// }
-// cardSelect.addEventListener('click', moveCounter) //Needs to be condensed into one with other event listener??
+//EVENT LISTENERS
+cardSelect.addEventListener('click', function cardFlip(event) {
+    const clickedCard = event.target;
+    if (clickedCard.classList.contains('card')) {
+        toggle(clickedCard);
+    };
+    addToOpen(clickedCard);
+    addMove();
+    itsAmatch();
+});
