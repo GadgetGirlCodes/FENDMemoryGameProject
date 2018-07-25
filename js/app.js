@@ -75,9 +75,18 @@ function itsAmatch() {
             toggle(openCards[0]);
             toggle(openCards[1]);
             openCards = [];
-        }, 1500);
+        }, 500);
     };
 };
+
+/* DEBUG - ALERTS WITH EVERY SECOND CLICK
+* function winnerWinner() {
+*     cardArray.forEach(function(item){
+*         if (item.classList.contains('match'))
+*             window.alert("CONGRATULATIONS!!!! YOU WIN!!!!")
+*     });
+* };
+*/
 
 //EVENT LISTENERS
 cardSelect.addEventListener('click', function cardFlip(event) {
