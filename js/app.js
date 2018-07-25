@@ -83,6 +83,11 @@ function itsAmatch() {
 
 function removeStar() {
     starTrack.lastElementChild.remove();
+    if (starTrack.childElementCount === 0){
+        setTimeout(function(){
+            window.alert("Sorry! Try Again!");
+        }, 500);
+    }
 }
 
 /* DEBUG - ALERTS WITH EVERY SECOND CLICK
