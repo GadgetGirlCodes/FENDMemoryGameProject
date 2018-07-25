@@ -40,6 +40,7 @@ cardArray.forEach(function(item) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 const cardSelect = document.querySelector('.deck');
+const starTrack = document.querySelector('.stars');
 let openCards = [];
 let moves = 0;
 
@@ -76,8 +77,13 @@ function itsAmatch() {
             toggle(openCards[1]);
             openCards = [];
         }, 500);
+        removeStar();
     };
 };
+
+function removeStar() {
+    starTrack.lastElementChild.remove();
+}
 
 /* DEBUG - ALERTS WITH EVERY SECOND CLICK
 * function winnerWinner() {
