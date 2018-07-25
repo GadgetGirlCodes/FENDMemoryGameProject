@@ -64,19 +64,18 @@ function addMove() {
     };
 };
 
-//DEBUG -- DOESN'T SHOW SECOND CLICKED CARD. NEEDS A TIMEOUT METHOD
 function itsAmatch() {
     if (openCards[0].firstElementChild.className ===
         openCards[1].firstElementChild.className) {
-            console.log("Its a Match!");
             openCards[0].setAttribute('class', 'card match');
             openCards[1].setAttribute('class', 'card match');
             openCards = [];
     } else {
-        console.log("Not a match!");
-        toggle(openCards[0]);
-        toggle(openCards[1]);
-        openCards = [];
+        setTimeout(function(){
+            toggle(openCards[0]);
+            toggle(openCards[1]);
+            openCards = [];
+        }, 1500);
     };
 };
 
