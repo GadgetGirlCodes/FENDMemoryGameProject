@@ -1,14 +1,30 @@
 /*
  * Create a list that holds all of your cards
  */
-const htmlCollection = document.getElementsByClassName('card')
-const cardArray = Array.from(htmlCollection)
+const cardArray = Array.from(document.querySelectorAll('.deck li'))
+const cardSelect = document.querySelector('.deck');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function placeCards(){
+    const shuffledCards = shuffle(cardArray);
+    for (card of shuffledCards) {
+        cardSelect.appendChild(card);
+    }
+}
+placeCards();
+ 
+/*DEBUG - JUST DOESN'T WORK AT ALL :( 
+* const resetGame = document.querySelector('.restart')
+* resetGame.addEventListener('click', function(clickReset){
+*     const resetClick = clickReset;
+*     placeCards();
+* });
+*/
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -25,10 +41,6 @@ function shuffle(array) {
     return array;
 }
 
-cardArray.forEach(function(item) {
-    item.setAttribute('class', 'card');
-});
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -39,7 +51,7 @@ cardArray.forEach(function(item) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-const cardSelect = document.querySelector('.deck');
+
 const starTrack = document.querySelector('.stars');
 let openCards = [];
 let moves = 0;
