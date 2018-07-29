@@ -89,9 +89,15 @@ function itsAmatch() {
             toggle(openCards[1]);
             openCards = [];
         }, 500);
-        removeStar();
+        scoreCard();
     };
 };
+
+function scoreCard() {
+    if (moves === 5 || moves === 15 || moves === 20) {
+        removeStar();
+    }
+}
 
 function removeStar() {
     starTrack.lastElementChild.remove();
@@ -102,6 +108,13 @@ function removeStar() {
     }
 }
 
+function winner() {
+    let dialog = document.getElementById('stats');
+    let startOver = document.getElementById('playAgain');
+    function gameEndCheck() {
+        }
+    }
+    
 /* DEBUG - ALERTS WITH EVERY SECOND CLICK
 * function winnerWinner() {
 *     cardArray.forEach(function(item){
