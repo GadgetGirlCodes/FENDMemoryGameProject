@@ -24,6 +24,8 @@
 
         	<span class="moves">0</span> Moves
 
+            <span class="timer">0:00</span>
+
             <button class="restart">
         		<i class="fa fa-repeat"></i>
         	</button>
@@ -80,6 +82,18 @@
             </li>
         </ul>
     </div>
+
+<dialog id="winnerWinner">
+    <section>
+        <p>CONGRATULATIONS! YOU WIN!</p>
+    </section>
+    
+    <div class="stats">
+        <p id="star" class="count"></p>
+        <p id="time" class="count"></p>
+    </div>
+    <button id="playAgain" type="reset">Play Again?</button>
+</dialog>
 
     <script src="js/app.js"></script>
 </body>
