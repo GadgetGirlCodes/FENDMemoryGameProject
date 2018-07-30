@@ -1,8 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
+ //GLOBAL VARIABLES
 const cardArray = Array.from(document.querySelectorAll('.deck li'))
 const cardSelect = document.querySelector('.deck');
+const starTrack = document.querySelector('.stars');
+let openCards = [];
+let moves = 0;
+let clockStop = true;
+let time = 0;
+let clockId;
+
 
 /*
  * Display the cards on the page
@@ -52,11 +60,33 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const starTrack = document.querySelector('.stars');
-let openCards = [];
-let moves = 0;
+
 
 //FUNCTIONS
+function displayTime() {
+    const timer = document.querySelector('.timer');
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if (seconds < 10) {
+        timer.innerHTML = minutes + ':0' + seconds;
+    } else {
+        timer.innerHTML = minutes + ':' + seconds;
+    };
+    console.log(timer);
+};
+
+function gameStart() {
+    clockId = setInterval(() => {
+        time++;
+        displayTime();
+        console.log(time);
+    }, 1000);
+};
+
+function gameStop() {
+    clearInterval(clockId);
+};
+
 function toggle(eventTarget) {
     eventTarget.classList.toggle('open');
     eventTarget.classList.toggle('show');
@@ -93,6 +123,7 @@ function itsAmatch() {
     };
 };
 
+
 function scoreCard() {
     if (moves === 5 || moves === 15 || moves === 20) {
         removeStar();
@@ -108,14 +139,16 @@ function removeStar() {
     }
 }
 
-function winner() {
-    let dialog = document.getElementById('stats');
-    let startOver = document.getElementById('playAgain');
-    function gameEndCheck() {
-        }
-    }
+
     
-/* DEBUG - ALERTS WITH EVERY SECOND CLICK
+/* MODAL ATTEMPTS
+* function winner() {
+*   let dialog = document.getElementById('stats');
+*   let startOver = document.getElementById('playAgain');
+*   function gameEndCheck() {
+*       }
+*   };
+*
 * function winnerWinner() {
 *     cardArray.forEach(function(item){
 *         if (item.classList.contains('match'))
@@ -125,8 +158,12 @@ function winner() {
 */
 
 //EVENT LISTENERS
-cardSelect.addEventListener('click', function cardFlip(event) {
+cardSelect.addEventListener('click', event => {
     const clickedCard = event.target;
+    if (clockStop) {
+        gameStart();
+        clockStop = false;
+    };
     if (clickedCard.classList.contains('card')) {
         toggle(clickedCard);
     };
