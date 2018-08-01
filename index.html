@@ -22,9 +22,9 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">0</span> Moves
+        	 <span class="moves">0</span> Moves 
 
-            <span class="timer">0:00</span>
+             <span class="timer">0:00</span>
 
             <button class="restart">
         		<i class="fa fa-repeat"></i>
@@ -83,17 +83,20 @@
         </ul>
     </div>
 
-<dialog id="winnerWinner">
-    <section>
-        <p>CONGRATULATIONS! YOU WIN!</p>
-    </section>
+<div id="winnerWinner" class="modal">
+	<div class="modalContent">
+    	<h1>CONGRATULATIONS! YOU WIN!</h1>
     
-    <div class="stats">
-        <p id="star" class="count"></p>
-        <p id="time" class="count"></p>
-    </div>
-    <button id="playAgain" type="reset">Play Again?</button>
-</dialog>
+    	<section class="stats">
+    		<h3>Stats</h3>
+    		<p id="moves" class="count">Moves: 0</p>
+    	    <p id="star" class="count">Stars: *</p>
+    	    <p id="time" class="count">Time: 0:00</p>
+    	</section>
+
+    	<button class="playAgain" type="reset">Play Again?</button>
+	</div>
+</div>
 
     <script src="js/app.js"></script>
 </body>
