@@ -9,6 +9,7 @@ const starTrack = document.querySelector('.stars');
 let matchedCards = [];
 let openCards = [];
 let moves = 0;
+const timer = document.querySelector('.timer');
 let clockStop = true;
 let time = 0;
 let clockId;
@@ -65,8 +66,15 @@ function shuffle(array) {
 
 
 //FUNCTIONS
+function gameStart() {
+    clockId = setInterval(() => {
+        time++;
+        displayTime();
+        console.log(time);
+    }, 1000);
+};
+    
 function displayTime() {
-    const timer = document.querySelector('.timer');
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     if (seconds < 10) {
@@ -75,14 +83,6 @@ function displayTime() {
         timer.innerHTML = minutes + ':' + seconds;
     };
     console.log(timer);
-};
-
-function gameStart() {
-    clockId = setInterval(() => {
-        time++;
-        displayTime();
-        console.log(time);
-    }, 1000);
 };
 
 function gameStop() {
@@ -127,17 +127,25 @@ function itsAmatch() {
     };
 };
 
-
 function scoreCard() {
     if (moves === 5 || moves === 15 || moves === 20) {
         starTrack.lastElementChild.remove();
     }
 }
 
+//DEBUG -- DOESN'T SHOW FINAL SCORE
+const finalStars = document.querySelector('.stars li');
+let starScore = document.getElementById(star);
+let timeScore = document.getElementById(time);
+let moveScore = document.getElementById(moves);
+
 function gameWin() {
     if (matchedCards.length === 16) {
-        modalAlert.style.display = "block";
         gameStop();
+        // starScore.textContent = finalStars;
+        // timeScore.textContent = time;
+        // moveScore.textContent = moves;
+        modalAlert.style.display = "block";
     }
 }
 
