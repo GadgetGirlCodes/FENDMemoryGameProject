@@ -9,7 +9,7 @@ const starTrack = document.querySelector('.stars');
 let matchedCards = [];
 let openCards = [];
 let moves = 0;
-const timer = document.querySelector('.timer');
+let timer = document.querySelector('.timer');
 let clockStop = true;
 let time = 0;
 let clockId;
@@ -134,18 +134,21 @@ function scoreCard() {
 }
 
 //DEBUG -- DOESN'T SHOW FINAL SCORE
-const finalStars = document.querySelector('.stars li');
-let starScore = document.getElementById(star);
-let timeScore = document.getElementById(time);
-let moveScore = document.getElementById(moves);
+
+let starScore = document.getElementById('star');
+let timeScore = document.getElementById('time');
+let moveScore = document.getElementById('moves');
 
 function gameWin() {
     if (matchedCards.length === 16) {
+        let finalTime = timer.innerHTML;
         gameStop();
-        // starScore.textContent = finalStars;
-        // timeScore.textContent = time;
-        // moveScore.textContent = moves;
+        let finalStars = document.querySelector('.stars').innerHTML;
+        let finalMoves = moves.innerHTML;
         modalAlert.style.display = "block";
+        starScore.innerHTML = finalStars;
+        timeScore.innerHTML = finalTime;
+        moveScore.innerHTML = finalMoves;
     }
 }
 
