@@ -140,6 +140,11 @@ h3 {
     height: 400px;
  }
 
+ #star {
+    list-style: none;
+    display: inline-block;
+ }
+
  .playAgain {
     background-color: #8adaf2;
  }
