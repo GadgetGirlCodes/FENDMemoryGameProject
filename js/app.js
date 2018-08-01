@@ -2,15 +2,17 @@
  * Create a list that holds all of your cards
  */
  //GLOBAL VARIABLES
-const cardArray = Array.from(document.querySelectorAll('.deck li'))
+const deck = document.querySelectorAll('.deck li');
+const cardArray = Array.from(deck);
 const cardSelect = document.querySelector('.deck');
 const starTrack = document.querySelector('.stars');
+let matchedCards = [];
 let openCards = [];
 let moves = 0;
 let clockStop = true;
 let time = 0;
 let clockId;
-
+const modalAlert = document.querySelector('.modal')
 
 /*
  * Display the cards on the page
@@ -112,6 +114,8 @@ function itsAmatch() {
         openCards[1].firstElementChild.className) {
             openCards[0].setAttribute('class', 'card match');
             openCards[1].setAttribute('class', 'card match');
+            matchedCards.push(openCards[0]);
+            matchedCards.push(openCards[1]);
             openCards = [];
     } else {
         setTimeout(function(){
@@ -126,36 +130,19 @@ function itsAmatch() {
 
 function scoreCard() {
     if (moves === 5 || moves === 15 || moves === 20) {
-        removeStar();
+        starTrack.lastElementChild.remove();
     }
 }
 
-function removeStar() {
-    starTrack.lastElementChild.remove();
-    if (starTrack.childElementCount === 0){
-        setTimeout(function(){
-            window.alert("Sorry! Try Again!");
-        }, 500);
+function gameWin() {
+    if (matchedCards.length === 16) {
+        modalAlert.style.display = "block";
+        gameStop();
     }
 }
-
 
     
-/* MODAL ATTEMPTS
-* function winner() {
-*   let dialog = document.getElementById('stats');
-*   let startOver = document.getElementById('playAgain');
-*   function gameEndCheck() {
-*       }
-*   };
-*
-* function winnerWinner() {
-*     cardArray.forEach(function(item){
-*         if (item.classList.contains('match'))
-*             window.alert("CONGRATULATIONS!!!! YOU WIN!!!!")
-*     });
-* };
-*/
+
 
 //EVENT LISTENERS
 cardSelect.addEventListener('click', event => {
@@ -170,4 +157,5 @@ cardSelect.addEventListener('click', event => {
     addToOpen(clickedCard);
     addMove();
     itsAmatch();
+    gameWin();
 });
