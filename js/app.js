@@ -206,7 +206,7 @@ cardSelect.addEventListener('click', event => {
         gameStart();
         clockStop = false;
     };
-    if (clickedCard.classList.contains('card')) {
+    if (clickedCard.classList.contains('card') && openCards.length < 2) {
         toggle(clickedCard);
     }
     addToOpen(clickedCard);
