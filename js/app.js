@@ -192,6 +192,7 @@ playAgain.addEventListener('click', () => {
     clockStop = true;
     gameReset();
     placeCards();
+    modalAlert.style.display = "none";
 })
 
 
