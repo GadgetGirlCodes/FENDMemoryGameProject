@@ -136,12 +136,13 @@ let starScore = document.getElementById('star');
 let timeScore = document.getElementById('time');
 let moveScore = document.getElementById('moves');
 
+
 function gameWin() {
     if (matchedCards.length === 16) {
-        let finalTime = timer.innerHTML; //DEBUG -- DOESN'T SHOW TIME
+        let finalTime = timer.innerHTML;
         gameStop();
         let finalStars = document.querySelector('.stars').innerHTML;
-        let finalMoves = moves.innerHTML;
+        let finalMoves = movesText.innerHTML;
         modalAlert.style.display = "block";
         starScore.innerHTML = finalStars;
         timeScore.innerHTML = finalTime;
@@ -207,7 +208,7 @@ cardSelect.addEventListener('click', event => {
     };
     if (clickedCard.classList.contains('card')) {
         toggle(clickedCard);
-    };
+    }
     addToOpen(clickedCard);
     addMove();
     itsAmatch();
