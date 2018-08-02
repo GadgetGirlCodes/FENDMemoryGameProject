@@ -151,6 +151,7 @@ function gameWin() {
 
 //Resets the game back to start
 const resetGame = document.querySelector('.restart')
+const playAgain = document.querySelector('.playAgain')
 
 function gameReset() {
     time = 0;
@@ -186,6 +187,14 @@ resetGame.addEventListener('click', () => {
     gameReset();
     placeCards();
 });
+
+playAgain.addEventListener('click', () => {
+    clockStop = true;
+    gameReset();
+    placeCards();
+})
+
+
 
 
 //Starts game
