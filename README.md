@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Goal](#goal)
-* [How to Play](#how to play)
+* [How to Play](#howtoplay)
 * [Attribution](#attribution)
 * [Contributing](#contributing)
 
